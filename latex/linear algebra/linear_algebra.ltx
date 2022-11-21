@@ -1,0 +1,300 @@
+\documentclass{book}
+\usepackage[utf8]{inputenc}
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amstext}
+\usepackage{amsthm}
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}} 	% Horizontal rule
+
+\makeatletter							% Title
+\def\printtitle{%						
+    {\centering \@title\par}}
+\makeatother									
+
+\makeatletter							% Author
+\def\printauthor{%					
+    {\centering \large \@author}}				
+\makeatother							
+
+% --------------------------------------------------------------------
+% Metadata (Change this)
+% --------------------------------------------------------------------
+\title{	\normalsize \textsc{the study of linear maps on finite-dimensional vector spaces} 	% Subtitle
+		 	\\[2.0cm]								% 2cm spacing
+			\HRule{0.5pt} \\						% Upper rule
+			\LARGE \textbf{\uppercase{Linear Algebra}}	% Title
+			\HRule{2pt} \\ [0.5cm]		% Lower rule + 0.5cm spacing
+			\normalsize {October 20, 2022}
+		}
+
+\author{
+		\emph{Alias} Minttu \emph{or} Sveltie\\	
+		Kalimantan Institute of Technology\\	
+		Department of Computer Science\\
+}
+%=======================================================================%
+\begin{document}
+\thispagestyle{empty}		% Remove page numbering on this page
+
+\printtitle					% Print the title data as defined above
+  	\vfill
+\printauthor				% Print the author data as defined above
+\newpage
+
+\chapter{Vector Spaces}
+\paragraph{}Linear algebra is the branch of mathematics concerned with the study of vectors, vector spaces (also called linear spaces), linear maps (also called linear transformations), and systems of linear equations, it is the study of linear maps on finite-dimensional vector spaces.
+
+%=======================================================================%
+
+\section{$\mathbb{R}^{n}$ and $\mathbb{C}^{n}$}
+\subsection{Complex Number}
+\subsubsection{Definition}
+\begin{itemize}
+    \item A complex number is an ordered pair $(a, b)$, where $a, b\in\mathbb{R}$      in such way that $\alpha = a + bi$.
+    \item The set of all complex number is denoted by $\mathbb{C}$:
+        \[\mathbb{C}: \{a + bi: a, b\in\mathbb{R}\}\]
+    \item Addition and Multiplication on $\mathbb{C}$ is defined by
+        \[(a + bi) + (c + di) = (a + b) + (b + d)i\]
+        \[(a + bi)(c + di) = (ac - bd) + (ad + bc)i\]
+         where $a, b, c, d\in\mathbb{R}$
+\end{itemize}
+\subsubsection{Properties of complex arithmetic}
+\begin{itemize}
+    \item Commutativity
+        \[\alpha + \beta = \beta + \alpha \text{ and } \alpha\beta = \beta\alpha \text{ for all } \alpha, \beta\in\mathbb{C}\]
+    \item Associativity
+        \[(\alpha + \beta) + \lambda = \alpha + (\beta + \lambda) \text{ for all } \alpha, \beta, \lambda\in\mathbb{C}\]
+    \item Identities
+        \[\lambda + 0 = \lambda \text{ and } 1\lambda = \lambda \text{ for } \lambda\in\mathbb{C}\]
+    \item Additive inverse
+        \[\forall\alpha\in\mathbb{C}\text{ there exists a unique }\beta\in\mathbb{C}\text{ such that }\alpha + \beta = 0\]
+    \item Multiplicative inverse
+        \[\forall\alpha\in\mathbb{C}\text{ with }\alpha\neq0\text{ there exists a unique } \beta\in\mathbb{C}\text{ such that }\alpha\beta = 1\]
+    \item Distributive property
+        \[\lambda(\alpha + \beta) = \lambda\alpha + \lambda\beta\text{ for all }\alpha, \beta, \lambda\in\mathbb{C}\]
+\end{itemize}
+\subsubsection{$\mathbb{F}$ notation}
+\paragraph{}$\mathbb{F}$ is used because $\mathbb{R}$ and $\mathbb{C}$ are examples of \textbf{fields}. Elements of $\mathbb{F}$ are called scalars. Scalar is often used when we want to emphasize that an object is a number, as opposed to a vector.
+\paragraph{}For $\alpha\in\mathbb{F}$ and $m$ is a positive integer, we define $\alpha^{m}$ to denote the product of $\alpha$ with itself for $m$ times:
+    \[\alpha^{m} = \underbrace{\alpha\cdots\alpha}_{m\text{-times}}\]
+\subsection{List}
+\subsubsection{Definition}
+\paragraph{}Suppose $n$ is a non-negative integer. A list of length $n$ is a collection of $n$ elements separated by commas and surrounded by parentheses. A list with length $n$ looks like this or so called the $n-\textbf{tuple}$:
+    \[(x_1,\ldots\\,x_n)\]
+Two lists are equal if and only if they have the same length and the same
+elements in the same order.
+\subsection{$\mathbb{F}^{n}$}
+\subsubsection{Definition}
+\paragraph{}$\mathbb{F}^{n}$ is the set of all list with length $n$ of elements of $\mathbb{F}$:
+    \[\mathbb{F}^{n}=\{(x_1, \ldots\\, x_n):x_j\in\mathbb{F}\text{ for } j = 1, \ldots\\, n\}\]
+For $(x_1, \ldots, x_n)\in\mathbb{F}$ and $j\in\{1, \ldots, n\}$, we say that $x_j$ is the $j^{th}$ coordinate of $(x_1, \ldots, x_n)$.
+\subsubsection{Addition in $\mathbb{F}^{n}$}
+\paragraph{} Addition in $\mathbb{F}$ is defined by adding the corresponding coordinates:
+    \[(x_1, \ldots, x_n) + (y_1, \ldots, y_n) = (x_1 + y_1, \ldots, x_n + y_n)\]
+\subsubsection{Commutativity addition in $\mathbb{F}^{n}$}
+    \[\text{If } x, y\in\mathbb{F}^{n}, \text{then } x + y = y + x\]
+\subsubsection{Additive inverse in $\mathbb{F}^{n}$}
+\paragraph{}For $x\in\mathbb{F}^{n}$, let the additive inverse of $x$ denoted by $-x$, where's $-x$ is the vector $-x\in\mathbb{F}$ such that:
+    \[x + (-x) = 0\]
+    \[(x_1, \ldots, x_n) + (-x_1, \ldots, -x_n) = 0\]
+\subsubsection{Scalar multiplication in $\mathbb{F}^{n}$}
+\paragraph{}The product of a scalar $\lambda$ and a vector $\mathbb{F}^{n}$ is computed by multiplying each coordinate with the scalar $\lambda$:
+    \[\lambda(x_1, \ldots, x_n) = (\lambda x_1, \ldots, \lambda x_n)\]
+where $\lambda\in\mathbb{F}$ and $(x_1, \ldots, x_n)\in\mathbb{F}^{n}$.
+\subsection{Digression on Fields}
+\paragraph{}A field is a set containing at least two distinct elements called $0$ and $1$, along with operations of addition and multiplication satisfying all the properties listed in the properties of complex arithmetic. Thus $\mathbb{R}$ and $\mathbb{C}$ are fields, as is the set of rational numbers along with the usual operations of addition and multiplication.
+\subsection{Exercises}
+\begin{enumerate}
+    \item $a$ and $b$ are real numbers, not both $0$. Find real numbers $c$ and $d$     such that
+        \[\frac{1}{a + bi} = c + di.\]
+        \emph{Answer}.
+        \begin{align*}
+            \frac{1}{(a + bi)}\cdot\frac{(a - bi)}{(a - bi)} = c + di\\
+            \frac{a-bi}{a^2-b^2} = c + di\\
+            \frac{a}{a^2-b^2} - \left(\frac{b}{a^2-b^2}\right)\cdot i = c + di
+        \end{align*}
+        Hence, by comparing the real and the imaginary part of the equation, we can show that
+        \[c = \frac{a}{a^2-b^2}\]
+        \[d = \frac{b}{a^2-b^2}\]
+        where a, b, c, d $\in\mathbb{R}$.
+    \item Show that
+        \[\frac{-1 + \sqrt{3}i}{2}\]
+        is a cube root of 1 (meaning that its cube equals 1).
+        \begin{proof}
+        Let $\alpha\in\mathbb{C}$ be arbitrary. Assume that $\alpha = \frac{-1 + \sqrt{3}i}{2}$, therefore we can show that
+            \begin{align*}
+                \alpha^{3} &= \left( \frac{-1 + \sqrt{3}i}{2} \right)^3\\
+                &= \frac{(-1 + \sqrt{3}i)^{2}\cdot(-1 + \sqrt{3}i)}{8}\\
+                &= \frac{(-2 - 2\sqrt{3}i)\cdot(-1 + \sqrt{3}i)}{8}\\
+                &= \frac{2-2\sqrt{3}i+2\sqrt{3}i-6\cdot(-1)}{8}\\
+                &= \frac{2+6}{8}\\
+                &= \frac{8}{8}\\
+                &= 1.
+            \end{align*}
+            Hence, $\left(\frac{-1 + \sqrt{3}i}{2}\right)$ is the cube root of 1.
+        \end{proof}
+    \item Find two distinct square roots of $i$.
+        \\\emph{Answer.} Assume there exists a complex number such that $a + bi = \sqrt{i}$
+        \begin{align*}
+            a + bi &= \sqrt{i}\\
+            (a + bi)^{2} &= (\sqrt{i})^{2}\\
+            a^{2}-b^2+2abi &= i.
+        \end{align*}
+        Thus, by comparing the real and imaginary part of the equation, we can show that
+        \[a^{2}-b^2+2abi = 0 + i\]
+        \[
+        \left\{
+            \begin{array}{ll}
+                a^2-b^2 &= 0\\
+                2abi &= i\Leftrightarrow2ab=1.
+            \end{array}
+        \right.
+        \]
+        We can show that $b^2\in\mathbb{R}$ is the unique number such that
+        \begin{align*}
+            a^2-b^2 &= 0\\
+            a^2 &= b^2\\
+            a &= b.
+        \end{align*}
+        Since $b$ is the additive inverse of $a$ then by definition, $b$ must be equal to $a$. We can substitute $b = a$ to the complex part of the equation
+        \begin{align*}
+            2ab &= 1\\
+            2a^{2} &= 1\\
+            a^2 &= \frac{1}{2}\\
+            a &= \pm\sqrt{\frac{1}{2}}\\
+            a &= \pm\frac{\sqrt{2}}{2}.
+        \end{align*}
+        Since $a$ is equal to $b$, we can show that
+        \begin{align*}
+            a + bi &= \sqrt{i}\\
+            \sqrt{i} &= \frac{\sqrt{2}}{2}+\frac{\sqrt{2}}{2}i \text{ or } -\frac{\sqrt{2}}{2}-\frac{\sqrt{2}}{2}i.
+        \end{align*}
+    \item Show that $\alpha + \beta = \beta + \alpha$ for all $\alpha, \beta\in\mathbb{C}$.
+        \begin{proof}
+            Let $\alpha, \beta\in\mathbb{C}$ be arbitrary. Suppose that $\alpha = a + bi$ and $\beta = c + di$ where $a, b, c, d\in\mathbb{R}$. Then with the definition of addition in $\mathbb{C}$, we can show that
+            \[\alpha + \beta = \beta + \alpha\]
+            \[(a + bi) + (c + di) = (c + di) + (a + bi)\]
+            \[(a + c) + (b + d)i = (c + a) + (d + b)i.\]
+            Therefore, by using the definition of commutativity of addition in $\mathbb{R}$ on the equation above, we can show that $\alpha + \beta = \beta + \alpha$ for all $\alpha, \beta\in\mathbb{C}$.
+        \end{proof}
+    \item Show that $(\alpha + \beta) + \lambda = \alpha + (\beta + \lambda)$ for all           $\alpha, \beta, \lambda\in\mathbb{C}$.
+        \begin{proof}
+            Let $\alpha, \beta, \lambda\in\mathbb{C}$ be arbitrary. Suppose that $\alpha = a + bi$ and $\beta = c + di$ and $\lambda = e + fi$ where $a, b, c, d, e, f\in\mathbb{R}$ (\emph{e is used as a variable here and not the Euler's number}). Then with the definition of addition in $\mathbb{C}$, we can show that
+            \begin{align*}
+                (\alpha + \beta) + \lambda &= ((a + bi) + (c + di)) + (e + fi) \\
+                &=((a + c) + (b + d)i) + (e + fi) \\
+                &=(((a + c) + e) + ((b + d) + f)i)
+            \end{align*}
+            and
+            \begin{align*}
+                \alpha + (\beta + \lambda) &= (a + bi) + ((c + di) + (e + fi)) \\
+                &=(a + bi) + ((c + e) + (d + f)i) \\
+                &=((a + (c + e)) + (b + (d + f))i).
+            \end{align*}
+            By using the definition of associativity in $\mathbb{R}$ on the equation above, we can show that
+            \[((a + c) + e) = (a + (c + e))\]
+            and
+            \[((b + d) + f)i = (b + (d + f))i.\]
+            Hence, we can conclude that $(\alpha + \beta) + \lambda = \alpha + (\beta + \lambda)$ for all $\alpha, \beta, \lambda\in\mathbb{C}$.
+        \end{proof}
+    \item Show that $(\alpha \beta) \lambda = \alpha (\beta \lambda)$ for all $\alpha,          \beta, \lambda\in\mathbb{C}$.
+        \begin{proof}
+            Let $\alpha, \beta, \lambda\in\mathbb{C}$ be arbitrary. Suppose that $\alpha = a + bi$ and $\beta = c + di$ and $\lambda = e + fi$ where $a, b, c, d, e, f\in\mathbb{R}$ (\emph{e is used as a variable here and not the Euler's number}). Then with the definition of multiplication in $\mathbb{C}$, we can show that
+            \begin{align*}
+                (\alpha \beta) \lambda &= ((a + bi)\cdot(c + di))\cdot(e + fi) \\
+                &= ((ac - bd) + (ad + bc)i)\cdot(e + fi) \\
+                &= ((ac - bd)e + ((ac - bd)f)i + ((ad + bc)e)i - (ad + bc)f) \\
+                &= ((ac - bd)e - (ad + bc)f) + ((ac - bd)f) + ((ad + bc)e)i
+            \end{align*}
+            and
+            \begin{align*}
+                \alpha (\beta \lambda) &= (a + bi)\cdot((c + di)\cdot(e + fi)) \\
+                &= (a + bi)\cdot((ce - df) + (cf + de)i)) \\
+                &= ((ce - df)a + ((cf + de)a)i + ((ce - df)b)i - (cf + de)b) \\
+                &= ((ce - df)a - (cf + de)b) + ((cf + de)a + ((ce - df)b)i.
+            \end{align*}
+            By comparing the real part and the imaginary part on the two equation above and using the definition of commutativity, associativity, and distributive property in $\mathbb{R}$, we can show that
+            \begin{align*}
+                (ac - bd)e - (ad + bc)f &= (ace - bde) - (adf + bcf) \\
+                &= (ace - adf) - (bde + bcf) \\
+                &= (ce - df)a - (cf + de)b
+            \end{align*}
+            and
+            \begin{align*}
+                ((ac - bd)f) + ((ad + bc)e)i &= ((acf - bdf) + (ade - bce))i \\
+                &= (acf + ade) + (bce - bdf) \\
+                &= (cf + de)a + (ce - df)b.
+            \end{align*}
+            Therefore, we can conclude that $(\alpha \beta) \lambda = \alpha (\beta \lambda)$ for all $\alpha, \beta, \lambda\in\mathbb{C}$.
+        \end{proof}
+    \item Show that for every $\alpha\in\mathbb{C}$, there exists a unique                      $\beta\in\mathbb{C}$ such that $\alpha + \beta = 0$.
+        \begin{proof}
+            Let $\alpha, \beta\in\mathbb{C}$ be arbitrary. Suppose that $\alpha = a + bi$ and $\beta = c + di$ where $a, b, c, d\in\mathbb{R}$. Using the definition of addition in $\mathbb{C}$, we can show that
+            \begin{align*}
+                \alpha + \beta &= (a + bi) + (c + di) \\
+                &= (a + c) + (b + d)i.
+            \end{align*}
+            Here, we can think of 0 as a subset of $\mathbb{C}$, thus we can write $0$ as a set of $\mathbb{C}$ as $0 + 0i$. Thus, we can show that
+                \[(a + c) + (b + d)i = 0 + 0i.\]
+            By using the definition of addition property of equality and additive inverse in $\mathbb{R}$, we can show that
+            \begin{align*}
+                (a + c) &= 0 \\
+                c &= -a
+            \end{align*}
+            and
+            \begin{align*}
+                (b + d) &= 0 \\
+                d &= -b.
+            \end{align*}
+            Therefore, we can show that $\beta\in\mathbb{C}$ is the additive inverse of $\alpha\in\mathbb{C}$ and $\beta$ is the unique number such that $\alpha + \beta = 0$ where $\beta = -(a + bi)$. Hence, we can conclude that $\alpha + \beta = 0$.
+        \end{proof}
+    \item Show that for every $\alpha\in\mathbb{C}$ with $\alpha \neq 0$, there exists a unique $\beta\in\mathbb{C}$ such that $\alpha\beta = 1$.
+        \begin{proof}
+            Let $\alpha, \beta\in\mathbb{C}$ be arbitrary. Suppose that $\alpha = a + bi$ and $\beta = \frac{1}{\alpha}$ where $a, b\in\mathbb{R}$, we can show that
+            \begin{align*}
+                \beta &= \frac{1}{\alpha} \\
+                &= \frac{1}{(a + bi)} \\ 
+                &= \frac{1}{(a + bi)} \cdot \frac{(a - bi)}{(a - bi)} \\
+                &= \frac{(a - bi)}{(a^{2} - b^{2})}.
+            \end{align*}
+            By using the definition of multiplication on $\mathbb{C}$, we can show that
+            \begin{align*}
+                \alpha\beta &= (a + bi) \cdot \frac{(a - bi)}{(a^{2} - b^{2})} \\
+                &= \frac{(a^{2} - b^{2})}{(a^{2} - b^{2})} \\
+                &= 1.
+            \end{align*}
+            Therefore, we can show that $\beta\in\mathbb{C}$ is the multiplicative inverse of $\alpha\in\mathbb{C}$ and $\beta$ is the unique number such that $\alpha\beta = 1$ where $\beta = \frac{1}{(a + bi)}$. Hence, we can conclude that $\alpha\beta = 1$.
+        \end{proof}
+    \item Show that $\lambda(\alpha + \beta) = \lambda\alpha + \lambda\beta$ for all $\alpha, \beta, \lambda\in\mathbb{C}$.
+        \begin{proof}
+            Let $\alpha, \beta, \lambda\in\mathbb{C}$ be arbitrary. Suppose that $\alpha = a + bi$ and $\beta = c + di$ and $\lambda = e + fi$ where $a, b, c, d, e, f\in\mathbb{R}$ (\emph{e is used as a variable here and not the Euler's number}). By using the definition of addition and multiplication on $\mathbb{C}$, we can show that
+            \begin{align*}
+                \lambda(\alpha + \beta) &= (e + fi) \cdot ((a + bi) + (c + di)) \\
+                &= (e + fi) \cdot ((a + c) + (b + d)i) \\
+                &= (e(a + c) + (e(b + d))i + (f(a + c))i - f(b + d)) \\
+                &= (e(a + c) - f(b + d)) + ((e(b + d))i + (f(a + c))i
+            \end{align*}
+            and
+            \begin{align*}
+                \lambda\alpha + \lambda\beta &= (e + fi)\cdot(a + bi) + (e + fi)\cdot(c + di) \\
+                &= ((ea - fb) + (eb + fa)i) + ((ec - fd) + (ed + fc)i) \\
+                &= ((ea - fb) + (ec - fd)) + ((eb + fa) + (ed + fc))i
+            \end{align*}
+            By using the definition of commutativity, associativity, and distributive property in $\mathbb{R}$, we can show that
+            \begin{align*}
+                e(a + c) - f(b + d) &= (ea + ec) - (fb + fd) \\
+                &= (ea - fb) + (ec - fd)
+            \end{align*}
+            and
+            \begin{align*}
+                e(b + d) + f(a + c) &= (eb + ed) + (fa + fc) \\
+                &= (eb + fa) + (ed + fc).
+            \end{align*}
+            Thus, by comparing the real part of $\lambda(\alpha + \beta)$ and $\lambda\alpha + \lambda\beta$ where $\alpha, \beta, \lambda\in\mathbb{C}$ and $a, b, c, d, e, f\in\mathbb{R}$, we can conclude that $\lambda(\alpha + \beta)$ = $\lambda\alpha + \lambda\beta$ for all $\alpha, \beta, \lambda\in\mathbb{C}$.
+        \end{proof}
+%=======================================================================%
+\end{enumerate}
+\end{document}
